@@ -5,8 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patients</title>
+    <link rel="shortcut icon" href="#">
+    <style>
+        #registerPatient {
+            float: left;
+            height: 480px;
+            padding: 20px;
+            width: 180px;
+        }
+    </style>
 </head>
 <body>
+    <div id="registerPatient">
+        <h1>
+            Register Patients
+        </h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{patient_form}}
+            <input type="submit" value="Submit">
+        </form>
+    </div>
     <div>
         <table>
             <tr>
@@ -23,6 +42,8 @@
                 <th>{{x.last_name}}</th>
                 <th>{{x.phone}}</th>
                 <th>{{x.address}}</th>
+                <th><a href="{% url 'info_patient' x.identification %}">Info</a></th>
+                <th><a href="{% url 'modify_patient' x.identification %}">Modify</a></th>
             </tr>
             {% endfor %}
         </table>
