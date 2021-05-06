@@ -20,3 +20,17 @@ class Patient(models.Model):
     email = models.EmailField()
     blood_type = models.SmallIntegerField(choices=blood_type_choices)
     status = models.SmallIntegerField(choices=status_choices)
+
+    def __str__(self):
+        return (self.name + self.last_name)
+
+class History(models.Model):
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    companion = models.CharField(max_length=50, blank=True)
+    date = models.DateTimeField(auto_now_add=True)
+    height = models.DecimalField(max_digits=3, decimal_places=2)
+    weight = models.DecimalField(max_digits=5, decimal_places=2)
+    reason = models.TextField()
+    diagnostic = models.TextField()
+    recomendation = models.TextField(blank=True)
+    recomendate_medicine = models.TextField(blank = True)
