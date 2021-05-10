@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .forms import PatientForm
-from .models import Patient
+from .forms import PatientForm, HistoryForm
+from .models import Patient, History
 from django.forms import modelform_factory #útil para crear forms customizables rápidas
 # Create your views here.
 
@@ -21,7 +21,9 @@ def mainPatient(request):
 
 def infoPatient(request, id):
     patient = Patient.objects.get(identification=id)
-    context={'patient':patient}
+    history = patient.history_set.all()
+    context={'patient':patient, 'history':history}
+
     return render(request,'infoPatient.html', context)
 
 def modifyPatient(request, id):
@@ -39,3 +41,14 @@ def modifyPatient(request, id):
         'patient_form':patient_form
     }
     return render(request,'modifyPatient.html', context)
+
+def history(request, id):
+    patient = Patient.objects.get(identification=id)
+    history = patient.history_set.all() #This line returns all entries for patient in history table
+
+
+def registerHistory(request):
+    history_form = HistoryForm()
+    context={'history_form':history_form}
+
+    return render(request,'registerHistory.html', context)

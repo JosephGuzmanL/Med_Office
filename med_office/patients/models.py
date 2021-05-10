@@ -27,10 +27,20 @@ class Patient(models.Model):
 class History(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     companion = models.CharField(max_length=50, blank=True)
-    date = models.DateTimeField(auto_now_add=True)
+    date_of_creation = models.DateTimeField(auto_now_add=True)
+    date_of_consult= models.DateTimeField(blank=False, null=True)
     height = models.DecimalField(max_digits=3, decimal_places=2)
     weight = models.DecimalField(max_digits=5, decimal_places=2)
     reason = models.TextField()
     diagnostic = models.TextField()
     recomendation = models.TextField(blank=True)
     recomendate_medicine = models.TextField(blank = True)
+
+class Medicine(models.Model):
+    name = models.CharField(max_length=100)
+    presentation = models.CharField(max_length=100, blank=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields =['name', 'presentation'], name = 'constraint_medicine')
+        ]

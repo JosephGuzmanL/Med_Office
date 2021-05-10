@@ -1,0 +1,40 @@
+body {
+    background-color: #D1D1D1;
+}
+
+.registerPatient {
+    float: left;
+    height: 38%;
+    padding: 1%;
+    width: 30%;
+    background-color: #20272F;
+    padding:2%;
+}        
+
+.registerPatient h1 {
+    color:white;
+}
+.registerPatient label {
+    color:white;
+    padding:3%;
+    border-radius:2%;            
+}
+.registerPatient input {
+    width:100%;
+    margin-left:auto;
+    margin-right: auto;
+    padding:1%;
+    border-radius:2%;
+    margin-bottom: 4%;
+}
+.registerPatient select {
+    width:100%;
+    margin-left:auto;
+    margin-right: auto;
+    padding:1%;
+    border-radius:2%;
+    margin-bottom: 4%;
+}
+.registerPatient button {
+    float: right;
+}
