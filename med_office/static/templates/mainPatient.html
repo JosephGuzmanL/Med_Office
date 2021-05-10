@@ -47,14 +47,50 @@
                 <th>{{x.address}}</th>
                 <th><a class="pure-button"href="{% url 'info_patient' x.identification %}">Info</a></th>
                 <th><a class="pure-button"href="{% url 'modify_patient' x.identification %}">Modify</a></th>
-                <!-- <th><button class="pure-button open-modal "><b>Delete</b></button></th> -->
-
-
+                <th><button id="{{x.identification}}"class="pure-button open-modal " onclick="display('{% url 'delete_patient' x.identification %}')"><b>Delete</b></button></th>
             </tr>
-
             {% endfor %}
         </table>
         
     </div>
+    
+    <div id="modalForDelete" class="modal">
+
+        <div class="modal-content">
+            <span id="modal-span" class="close" onclick="closeSpan(this)">
+                &times;
+            </span>
+            <p>
+                Are you sure you want to delete this Patient?
+            </p>
+            <a id ="modal-link"href="#">Delete</a>
+        </div>
+
+    </div>
+
+<script type="text/javascript">
+    //getting modal
+    var modal=document.getElementById("odalForDeletee");
+
+    //get button that opens the modal
+    var btn = document.getElementsByClassName("open-modal");
+
+    var span = document.getElementsByClassName("close");
+
+    function closeSpan() {
+        modal.style.display="none";
+    }
+
+    function display(url) {
+        modal.style.display = "block";
+        console.log(url)
+        document.getElementById("modal-link").href = url
+    }
+    window.onclick=function(event) {
+        if(event.target==modal) {
+            modal.style.display="none";
+        }
+    }
+</script>
 </body>
 </html>
