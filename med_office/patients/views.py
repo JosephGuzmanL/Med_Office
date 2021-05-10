@@ -42,13 +42,19 @@ def modifyPatient(request, id):
     }
     return render(request,'modifyPatient.html', context)
 
-def history(request, id):
-    patient = Patient.objects.get(identification=id)
-    history = patient.history_set.all() #This line returns all entries for patient in history table
-
 
 def registerHistory(request):
     history_form = HistoryForm()
     context={'history_form':history_form}
 
     return render(request,'registerHistory.html', context)
+
+def deletePatient(request, id):
+    Patient.objects.filter(identification=id).delete()
+    patient = Patient.objects.get.all()
+    patient_form = PatientForm()
+    context ={
+        'patient':patient,
+        'patient_form':patient_form
+    }
+    return render(request, 'mainPatient.html', context)
