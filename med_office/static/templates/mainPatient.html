@@ -47,7 +47,7 @@
                 <th>{{x.address}}</th>
                 <th><a class="pure-button"href="{% url 'info_patient' x.identification %}">Info</a></th>
                 <th><a class="pure-button"href="{% url 'modify_patient' x.identification %}">Modify</a></th>
-                <th><button id="{{x.identification}}"class="pure-button open-modal " onclick="display('{% url 'delete_patient' x.identification %}')"><b>Delete</b></button></th>
+                <th><button id="{{x.identification}}"class="pure-button open-modal" onclick="display(this)"><b>Delete</b></button></th>
             </tr>
             {% endfor %}
         </table>
@@ -70,10 +70,7 @@
 
 <script type="text/javascript">
     //getting modal
-    var modal=document.getElementById("odalForDeletee");
-
-    //get button that opens the modal
-    var btn = document.getElementsByClassName("open-modal");
+    var modal=document.getElementById("modalForDelete");
 
     var span = document.getElementsByClassName("close");
 
@@ -81,10 +78,9 @@
         modal.style.display="none";
     }
 
-    function display(url) {
+    function display(btn) {
         modal.style.display = "block";
-        console.log(url)
-        document.getElementById("modal-link").href = url
+        document.getElementById("modal-link").href = "{% url 'delete_patient' 999 %}".replace('999',btn.id.toString());
     }
     window.onclick=function(event) {
         if(event.target==modal) {
