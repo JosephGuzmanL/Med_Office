@@ -51,10 +51,5 @@ def registerHistory(request):
 
 def deletePatient(request, id):
     Patient.objects.filter(identification=id).delete()
-    patient = Patient.objects.get.all()
-    patient_form = PatientForm()
-    context ={
-        'patient':patient,
-        'patient_form':patient_form
-    }
-    return render(request, 'mainPatient.html', context)
+    
+    return redirect('patient')
