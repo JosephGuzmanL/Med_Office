@@ -15,26 +15,30 @@
             margin-right: 20%;
             border-style: solid;
             text-align: center;
+            padding:1%;
+        }
+        .cell_patient {
+            padding:2%;
         }
 
     </style>
 </head>
 <body>
-    <div class = "pure-table">
+    <div class = "info_patient pure-table" >
         <h1>Patient's Information</h1>
         Identification number : {{patient.identification}}
         <hr>
-        Name: {{patient.name}}
+        <p class="cell_patient">Name: {{patient.name}}</p> 
         <hr>
-        Last Name: {{patient.last_name}}
+        <p class="cell_patient">Last Name: {{patient.last_name}}</p> 
         <hr>
-        Phone: {{patient.phone}}
+        <p class="cell_patient">Phone: {{patient.phone}}</p> 
         <hr>
-        Address: {{patient.address}}
+        <p class="cell_patient">Address: {{patient.address}}</p> 
         <hr>
-        Blood Type :{{patient.get_blood_type_display}}
+        <p class="cell_patient">Blood Type :{{patient.get_blood_type_display}}</p> 
         <hr>
-        Status: {{patient.get_status_display}}
+        <p class="cell_patient">Status: {{patient.get_status_display}}</p> 
     </div>
     
     <div>
